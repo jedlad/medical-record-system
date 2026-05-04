@@ -6,7 +6,6 @@ include $_SERVER['DOCUMENT_ROOT'] . "/medical_system/web/layout/sidebar.php";
 
 <div class="content">
 
-<!-- MESSAGE -->
 <div id="msgBox"></div>
 
 <div class="topbar">
@@ -16,13 +15,11 @@ include $_SERVER['DOCUMENT_ROOT'] . "/medical_system/web/layout/sidebar.php";
 
 <div class="mt-3">
 
-<!-- SEARCH -->
 <div class="card p-3 mb-3 shadow">
     <input id="search" class="form-control mb-2" placeholder="Enter Last Name or PhilHealth ID">
     <button onclick="load()" class="btn btn-success">Search</button>
 </div>
 
-<!-- TABLE -->
 <div class="card p-3 shadow">
 <table class="table table-hover">
 <thead>
@@ -30,7 +27,7 @@ include $_SERVER['DOCUMENT_ROOT'] . "/medical_system/web/layout/sidebar.php";
 <th>Name</th>
 <th>Doctor</th>
 <th>Diagnosis</th>
-<th width="160">Action</th>
+<th width="200">Action</th>
 </tr>
 </thead>
 
@@ -44,7 +41,6 @@ Search patient first
 </table>
 </div>
 
-<!-- EDIT FORM -->
 <div id="editBox" class="card p-4 mt-3 shadow" style="display:none;">
 <h5>Edit Patient</h5>
 
@@ -154,11 +150,9 @@ function showMessage(type, message){
         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
     </div>`;
 
-    document.getElementById("msgBox").innerHTML = html;
-
+    msgBox.innerHTML = html;
     setTimeout(()=>{ msgBox.innerHTML = ""; },3000);
 }
-
 
 // SEARCH
 function load(){
@@ -189,8 +183,15 @@ function load(){
                     <td>${p.doctor_name || 'No Doctor Assigned'}</td>
                     <td>${p.diagnosis || ''}</td>
                     <td>
-                        <button onclick="edit(${p.id})" class="btn btn-warning btn-sm">Edit</button>
-                        <button onclick="del(${p.id})" class="btn btn-danger btn-sm">Delete</button>
+
+                        <button onclick="edit(${p.id})" class="btn btn-warning btn-sm me-1">
+                            <i class="fa fa-edit"></i> Edit
+                        </button>
+
+                        <button onclick="del(${p.id})" class="btn btn-danger btn-sm">
+                            <i class="fa fa-trash"></i> Delete
+                        </button>
+
                     </td>
                 </tr>`;
             });
@@ -199,7 +200,6 @@ function load(){
         tbl.innerHTML = html;
     });
 }
-
 
 // LOAD DOCTORS
 function loadDoctors(selectedId = null){
@@ -219,7 +219,6 @@ function loadDoctors(selectedId = null){
         }
     });
 }
-
 
 // EDIT
 function edit(id){
@@ -248,10 +247,8 @@ function edit(id){
     });
 }
 
-
 // UPDATE
 function update(){
-
     fetch('/medical_system/api/patients/update.php',{
         method:'POST',
         headers:{'Content-Type':'application/json'},
@@ -285,8 +282,7 @@ function update(){
     });
 }
 
-
-// DELETE (MODAL)
+// DELETE
 let deleteId = null;
 
 function del(id){

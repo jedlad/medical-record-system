@@ -1,3 +1,4 @@
+```php
 <?php
 session_start();
 include "../api/db.php";
@@ -46,6 +47,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
+<!-- 🔥 ICONS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 <style>
 body {
     margin: 0;
@@ -54,32 +58,26 @@ body {
     position: relative;
 }
 
-/* 🔥 BLUR OVERLAY */
 body::before {
     content: "";
     position: fixed;
     top: 0; left: 0;
     width: 100%; height: 100%;
     backdrop-filter: blur(1px);
-    background: rgba(255,255,255,0.1); /* 🔥 best balance */
+    background: rgba(255,255,255,0.1);
     z-index: 0;
 }
 
-/* 🔥 CONTENT ABOVE BLUR */
 .container {
     position: relative;
     z-index: 1;
 }
+
 .card {
     border-radius: 15px;
     backdrop-filter: blur(10px);
     background: rgba(255,255,255,0.15);
     color: white;
-}
-
-@keyframes fadeIn {
-    from {opacity:0; transform:translateY(20px);}
-    to {opacity:1; transform:translateY(0);}
 }
 
 .btn-primary {
@@ -93,6 +91,11 @@ body::before {
 .input-group-text {
     cursor: pointer;
 }
+
+/* 🔥 ICON SPACING */
+.btn i {
+    margin-right: 6px;
+}
 </style>
 
 </head>
@@ -105,6 +108,7 @@ body::before {
 <div class="text-center mb-3">
     <img src="assets/img/system-logo.png" width="90">
 </div>
+
 <h4 class="text-center mb-3">Medical Record Login</h4>
 
 <?php if(isset($error)): ?>
@@ -117,7 +121,6 @@ body::before {
 
 <input name="username" class="form-control mb-2" placeholder="Username" required>
 
-<!-- 🔥 PASSWORD WITH EYE -->
 <div class="input-group mb-3">
     <input name="password" type="password" id="password" class="form-control" placeholder="Password" required>
 
@@ -126,8 +129,9 @@ body::before {
     </span>
 </div>
 
+<!-- 🔥 UPDATED BUTTON WITH ICON -->
 <button class="btn btn-primary w-100">
-    Login
+    <i class="fa fa-right-to-bracket"></i> Login
 </button>
 
 </form>
@@ -135,7 +139,6 @@ body::before {
 </div>
 </div>
 
-<!-- 🔥 SCRIPT -->
 <script>
 function togglePassword(){
 
