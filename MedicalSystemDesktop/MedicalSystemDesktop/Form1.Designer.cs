@@ -31,6 +31,7 @@
             this.btnLoad = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.btnAdd = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -64,11 +65,22 @@
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
+            // btnDelete
+            // 
+            this.btnDelete.Location = new System.Drawing.Point(564, 317);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(221, 69);
+            this.btnDelete.TabIndex = 4;
+            this.btnDelete.Text = "DELETE PATIENTS";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(939, 587);
+            this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btnLoad);
@@ -84,6 +96,7 @@
         private System.Windows.Forms.Button btnLoad;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.Button btnDelete;
     }
 }
 
