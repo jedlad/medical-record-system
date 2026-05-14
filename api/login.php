@@ -1,38 +1,56 @@
 <?php
-header("Content-Type: application/json");
+
 include "db.php";
 
+header("Content-Type: application/json");
+
+// 🔥 RECEIVE JSON FROM C#
 $data = json_decode(file_get_contents("php://input"), true);
 
-// fallback if form-data (para web)
-$username = $data['username'] ?? $_POST['username'] ?? '';
-$password = $data['password'] ?? $_POST['password'] ?? '';
+$username = trim($data['username'] ?? '');
+$password = trim($data['password'] ?? '');
 
-if(empty($username) || empty($password)){
+if($username == "" || $password == ""){
     echo json_encode([
-        "status" => "error",
-        "message" => "Username and password required"
+        "status"=>"error",
+        "message"=>"Please fill all fields"
     ]);
-    exit;
+    exit();
 }
 
-// NOTE: using md5 based sa imong existing DB setup
-$password = md5($password);
+$stmt = $conn->prepare("SELECT * FROM users WHERE username=?");
+$stmt->bind_param("s", $username);
+$stmt->execute();
 
-$sql = "SELECT id, username FROM users WHERE username='$username' AND password='$password'";
-$res = $conn->query($sql);
+$res = $stmt->get_result();
 
 if($res->num_rows > 0){
+
     $user = $res->fetch_assoc();
 
-    echo json_encode([
-        "status" => "success",
-        "user" => $user
-    ]);
+    // 🔥 CHECK PASSWORD
+    if(
+        $user['password'] == md5($password) ||
+        $user['password'] == $password
+    ){
+
+        echo json_encode([
+            "status"=>"success"
+        ]);
+
+    } else {
+
+        echo json_encode([
+            "status"=>"error",
+            "message"=>"Invalid credentials"
+        ]);
+    }
+
 } else {
+
     echo json_encode([
-        "status" => "error",
-        "message" => "Invalid credentials"
+        "status"=>"error",
+        "message"=>"User not found"
     ]);
 }
 ?>
