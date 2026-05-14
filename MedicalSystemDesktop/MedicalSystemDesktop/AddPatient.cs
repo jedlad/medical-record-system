@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Windows.Forms;
+using static MedicalSystemDesktop.Form1;
 
 namespace MedicalSystemDesktop
 {
@@ -21,18 +22,22 @@ namespace MedicalSystemDesktop
             public string name { get; set; }
         }
 
-        // 🔥 LOAD DOCTORS (ONLY ONE)
+        // 🔥 FORM LOAD
         private async void AddPatient_Load(object sender, EventArgs e)
         {
             try
             {
+                // 🔥 HIDE GRID FIRST
+                dataGridView1.Visible = false;
+
                 using (HttpClient client = new HttpClient())
                 {
                     string url = "http://localhost/medical_system/api/doctors/get.php";
 
                     var json = await client.GetStringAsync(url);
 
-                    List<Doctor> doctors = JsonConvert.DeserializeObject<List<Doctor>>(json);
+                    List<Doctor> doctors =
+                        JsonConvert.DeserializeObject<List<Doctor>>(json);
 
                     cbDoctor.DataSource = doctors;
                     cbDoctor.DisplayMember = "name";
@@ -45,7 +50,28 @@ namespace MedicalSystemDesktop
             }
         }
 
-        // 🔥 SAVE PATIENT
+        // 🔥 CLEAR FORM FUNCTION (ENHANCED)
+        private void ClearForm()
+        {
+            txtFname.Clear();
+            txtMname.Clear();
+            txtLname.Clear();
+            txtPhil.Clear();
+            txtAge.Clear();
+            txtAddress.Clear();
+            txtDiagnosis.Clear();
+            txtRemarks.Clear();
+            txtContact.Clear();
+
+            cbSex.SelectedIndex = -1;
+            cbCivil.SelectedIndex = -1;
+            cbDoctor.SelectedIndex = -1;
+
+            dtAdmit.Value = DateTime.Now;
+            dtDischarged.Value = DateTime.Now;
+        }
+
+        //SAVE BUTTON
         private async void btnSave_Click(object sender, EventArgs e)
         {
             try
@@ -109,25 +135,79 @@ namespace MedicalSystemDesktop
             }
         }
 
-        // 🔥 CLEAR FORM FUNCTION (ENHANCED)
-        private void ClearForm()
+        //LOAD BUTTON
+        private async void btnLoad_Click(object sender, EventArgs e)
         {
-            txtFname.Clear();
-            txtMname.Clear();
-            txtLname.Clear();
-            txtPhil.Clear();
-            txtAge.Clear();
-            txtAddress.Clear();
-            txtDiagnosis.Clear();
-            txtRemarks.Clear();
-            txtContact.Clear();
+            try
+            {
+                // 🔥 SHOW GRID
+                dataGridView1.Visible = true;
 
-            cbSex.SelectedIndex = -1;
-            cbCivil.SelectedIndex = -1;
-            cbDoctor.SelectedIndex = -1;
+                // 🔥 HIDE ADD CONTROLS
+                label1.Visible = false;
+                label2.Visible = false;
+                label3.Visible = false;
+                label4.Visible = false;
+                label5.Visible = false;
+                label6.Visible = false;
+                label7.Visible = false;
+                label8.Visible = false;
+                label9.Visible = false;
+                label10.Visible = false;
+                label11.Visible = false;
+                label12.Visible = false;
+                label13.Visible = false;
+                label14.Visible = false;
+                txtFname.Visible = false;
+                txtMname.Visible = false;
+                txtLname.Visible = false;
+                txtPhil.Visible = false;
+                txtAge.Visible = false;
+                txtAddress.Visible = false;
+                txtDiagnosis.Visible = false;
+                txtRemarks.Visible = false;
+                txtContact.Visible = false;
 
-            dtAdmit.Value = DateTime.Now;
-            dtDischarged.Value = DateTime.Now;
+                cbSex.Visible = false;
+                cbCivil.Visible = false;
+                cbDoctor.Visible = false;
+
+                dtAdmit.Visible = false;
+                dtDischarged.Visible = false;
+
+                btnSave.Visible = false;
+
+                HttpClient client = new HttpClient();
+
+                string url =
+                    "http://localhost/medical_system/api/patients/get.php";
+
+                var response = await client.GetStringAsync(url);
+
+                List<Patient> patients =
+                    JsonConvert.DeserializeObject<List<Patient>>(response);
+
+                dataGridView1.DataSource = patients;
+
+                // 🔥 AUTO FIT COLUMNS
+                dataGridView1.AutoSizeColumnsMode =
+                    DataGridViewAutoSizeColumnsMode.Fill;
+
+                // 🔥 HIDE ID
+                if (dataGridView1.Columns["id"] != null)
+                {
+                    dataGridView1.Columns["id"].Visible = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("❌ ERROR: " + ex.Message);
+            }
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
