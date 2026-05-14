@@ -15,7 +15,7 @@ namespace MedicalSystemDesktop
             InitializeComponent();
         }
 
-        // 🔥 MODEL
+        // 🔥 DOCTOR MODEL
         public class Doctor
         {
             public int id { get; set; }
@@ -32,7 +32,8 @@ namespace MedicalSystemDesktop
 
                 using (HttpClient client = new HttpClient())
                 {
-                    string url = "http://localhost/medical_system/api/doctors/get.php";
+                    string url =
+                        "http://localhost/medical_system/api/doctors/get.php";
 
                     var json = await client.GetStringAsync(url);
 
@@ -46,11 +47,12 @@ namespace MedicalSystemDesktop
             }
             catch (Exception ex)
             {
-                MessageBox.Show("❌ Error loading doctors: " + ex.Message);
+                MessageBox.Show(
+                    "❌ Error loading doctors: " + ex.Message);
             }
         }
 
-        // 🔥 CLEAR FORM FUNCTION (ENHANCED)
+        // 🔥 CLEAR FORM
         private void ClearForm()
         {
             txtFname.Clear();
@@ -71,7 +73,7 @@ namespace MedicalSystemDesktop
             dtDischarged.Value = DateTime.Now;
         }
 
-        //SAVE BUTTON
+        // 🔥 SAVE BUTTON
         private async void btnSave_Click(object sender, EventArgs e)
         {
             try
@@ -81,7 +83,8 @@ namespace MedicalSystemDesktop
                     txtLname.Text.Trim() == "" ||
                     txtPhil.Text.Trim() == "")
                 {
-                    MessageBox.Show("⚠ Please fill required fields");
+                    MessageBox.Show(
+                        "⚠ Please fill required fields");
                     return;
                 }
 
@@ -101,41 +104,52 @@ namespace MedicalSystemDesktop
                         remarks = txtRemarks.Text,
                         contact_number = txtContact.Text,
                         doctor_id = cbDoctor.SelectedValue,
-                        date_admitted = dtAdmit.Value.ToString("yyyy-MM-dd"),
-                        date_discharged = dtDischarged.Value.ToString("yyyy-MM-dd") // ✅ FIXED
+                        date_admitted =
+                            dtAdmit.Value.ToString("yyyy-MM-dd"),
+                        date_discharged =
+                            dtDischarged.Value.ToString("yyyy-MM-dd")
                     };
 
-                    string json = JsonConvert.SerializeObject(data);
+                    string json =
+                        JsonConvert.SerializeObject(data);
 
-                    var content = new StringContent(json, Encoding.UTF8, "application/json");
+                    var content =
+                        new StringContent(
+                            json,
+                            Encoding.UTF8,
+                            "application/json");
 
                     var response = await client.PostAsync(
                         "http://localhost/medical_system/api/patients/add.php",
                         content
                     );
 
-                    string result = await response.Content.ReadAsStringAsync();
+                    string result =
+                        await response.Content.ReadAsStringAsync();
 
                     // 🔥 CHECK RESPONSE
                     if (result.Contains("success"))
                     {
-                        MessageBox.Show("✅ Patient added successfully!");
+                        MessageBox.Show(
+                            "✅ Patient added successfully!");
 
-                        ClearForm(); // 🔥 CLEAR INPUTS
+                        ClearForm();
                     }
                     else
                     {
-                        MessageBox.Show("❌ Failed to add patient:\n" + result);
+                        MessageBox.Show(
+                            "❌ Failed to add patient:\n" + result);
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("❌ Error: " + ex.Message);
+                MessageBox.Show(
+                    "❌ Error: " + ex.Message);
             }
         }
 
-        //LOAD BUTTON
+        // 🔥 LOAD BUTTON
         private async void btnLoad_Click(object sender, EventArgs e)
         {
             try
@@ -143,7 +157,7 @@ namespace MedicalSystemDesktop
                 // 🔥 SHOW GRID
                 dataGridView1.Visible = true;
 
-                // 🔥 HIDE ADD CONTROLS
+                // 🔥 HIDE INPUT CONTROLS
                 label1.Visible = false;
                 label2.Visible = false;
                 label3.Visible = false;
@@ -158,6 +172,7 @@ namespace MedicalSystemDesktop
                 label12.Visible = false;
                 label13.Visible = false;
                 label14.Visible = false;
+
                 txtFname.Visible = false;
                 txtMname.Visible = false;
                 txtLname.Visible = false;
@@ -182,14 +197,15 @@ namespace MedicalSystemDesktop
                 string url =
                     "http://localhost/medical_system/api/patients/get.php";
 
-                var response = await client.GetStringAsync(url);
+                var response =
+                    await client.GetStringAsync(url);
 
                 List<Patient> patients =
                     JsonConvert.DeserializeObject<List<Patient>>(response);
 
                 dataGridView1.DataSource = patients;
 
-                // 🔥 AUTO FIT COLUMNS
+                // 🔥 AUTO FIT
                 dataGridView1.AutoSizeColumnsMode =
                     DataGridViewAutoSizeColumnsMode.Fill;
 
@@ -201,13 +217,55 @@ namespace MedicalSystemDesktop
             }
             catch (Exception ex)
             {
-                MessageBox.Show("❌ ERROR: " + ex.Message);
+                MessageBox.Show(
+                    "❌ ERROR: " + ex.Message);
             }
         }
 
+        // 🔥 CLOSE BUTTON
         private void btnClose_Click(object sender, EventArgs e)
         {
-            this.Close();
+            // 🔥 HIDE GRID
+            dataGridView1.Visible = false;
+
+            // 🔥 SHOW LABELS
+            label1.Visible = true;
+            label2.Visible = true;
+            label3.Visible = true;
+            label4.Visible = true;
+            label5.Visible = true;
+            label6.Visible = true;
+            label7.Visible = true;
+            label8.Visible = true;
+            label9.Visible = true;
+            label10.Visible = true;
+            label11.Visible = true;
+            label12.Visible = true;
+            label13.Visible = true;
+            label14.Visible = true;
+
+            // 🔥 SHOW TEXTBOXES
+            txtFname.Visible = true;
+            txtMname.Visible = true;
+            txtLname.Visible = true;
+            txtPhil.Visible = true;
+            txtAge.Visible = true;
+            txtAddress.Visible = true;
+            txtDiagnosis.Visible = true;
+            txtRemarks.Visible = true;
+            txtContact.Visible = true;
+
+            // 🔥 SHOW COMBOBOXES
+            cbSex.Visible = true;
+            cbCivil.Visible = true;
+            cbDoctor.Visible = true;
+
+            // 🔥 SHOW DATE PICKERS
+            dtAdmit.Visible = true;
+            dtDischarged.Visible = true;
+
+            // 🔥 SHOW SAVE BUTTON
+            btnSave.Visible = true;
         }
     }
 }
