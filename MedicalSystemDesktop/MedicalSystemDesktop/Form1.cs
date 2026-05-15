@@ -77,5 +77,14 @@ namespace MedicalSystemDesktop
         {
             LoadForm(new AddDoctor());
         }
+
+        private void btnDashboard_Click(object sender, EventArgs e)
+        {
+            Form1 dashboard = new Form1();
+
+            dashboard.Show();
+
+            this.Close();
+        }
     }
 }
