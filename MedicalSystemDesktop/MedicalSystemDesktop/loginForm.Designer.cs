@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(loginForm));
             this.txtUsername = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnSignup = new System.Windows.Forms.Button();
             this.btnShow = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -38,7 +39,6 @@
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.btnLogin = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btnSignup = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -71,6 +71,19 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(959, 821);
             this.panel1.TabIndex = 1;
+            // 
+            // btnSignup
+            // 
+            this.btnSignup.BackColor = System.Drawing.Color.White;
+            this.btnSignup.Font = new System.Drawing.Font("Segoe UI Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSignup.ForeColor = System.Drawing.Color.Black;
+            this.btnSignup.Location = new System.Drawing.Point(319, 622);
+            this.btnSignup.Name = "btnSignup";
+            this.btnSignup.Size = new System.Drawing.Size(326, 50);
+            this.btnSignup.TabIndex = 8;
+            this.btnSignup.Text = "SIGN UP";
+            this.btnSignup.UseVisualStyleBackColor = false;
+            this.btnSignup.Click += new System.EventHandler(this.btnSignup_Click);
             // 
             // btnShow
             // 
@@ -151,19 +164,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 7;
             this.pictureBox1.TabStop = false;
-            // 
-            // btnSignup
-            // 
-            this.btnSignup.BackColor = System.Drawing.Color.White;
-            this.btnSignup.Font = new System.Drawing.Font("Segoe UI Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSignup.ForeColor = System.Drawing.Color.Black;
-            this.btnSignup.Location = new System.Drawing.Point(319, 622);
-            this.btnSignup.Name = "btnSignup";
-            this.btnSignup.Size = new System.Drawing.Size(326, 50);
-            this.btnSignup.TabIndex = 8;
-            this.btnSignup.Text = "SIGN UP";
-            this.btnSignup.UseVisualStyleBackColor = false;
-            this.btnSignup.Click += new System.EventHandler(this.btnSignup_Click);
             // 
             // loginForm
             // 

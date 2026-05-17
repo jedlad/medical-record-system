@@ -19,7 +19,7 @@ namespace MedicalSystemDesktop
             try
             {
                 if (txtUsername.Text.Trim() == "" ||
-                   txtPassword.Text.Trim() == "")
+                   txtPass.Text.Trim() == "")
                 {
                     MessageBox.Show(
                         "⚠ Please fill all fields"
@@ -34,7 +34,7 @@ namespace MedicalSystemDesktop
                     var data = new
                     {
                         username = txtUsername.Text,
-                        password = txtPassword.Text
+                        password = txtPass.Text
                     };
 
                     string json =
@@ -69,7 +69,7 @@ namespace MedicalSystemDesktop
                         );
 
                         txtUsername.Clear();
-                        txtPassword.Clear();
+                        txtPass.Clear();
                     }
                     else
                     {
@@ -101,6 +101,17 @@ namespace MedicalSystemDesktop
             login.Show();
 
             this.Hide();
+        }
+
+        private void btnShow_Click(object sender, EventArgs e)
+        {
+            txtPass.UseSystemPasswordChar =
+                !txtPass.UseSystemPasswordChar;
+        }
+
+        private void Signup_Load(object sender, EventArgs e)
+        {
+            txtPass.UseSystemPasswordChar = true;
         }
     }
 }

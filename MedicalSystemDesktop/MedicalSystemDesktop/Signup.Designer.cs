@@ -31,13 +31,14 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Signup));
             this.btnSignup = new System.Windows.Forms.Button();
             this.txtUsername = new System.Windows.Forms.TextBox();
-            this.txtPassword = new System.Windows.Forms.TextBox();
+            this.txtPass = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnBack = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btnBack = new System.Windows.Forms.Button();
+            this.btnShow = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -56,28 +57,31 @@
             // 
             // txtUsername
             // 
+            this.txtUsername.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtUsername.Location = new System.Drawing.Point(317, 365);
             this.txtUsername.Multiline = true;
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(322, 39);
             this.txtUsername.TabIndex = 2;
             // 
-            // txtPassword
+            // txtPass
             // 
-            this.txtPassword.Location = new System.Drawing.Point(317, 468);
-            this.txtPassword.Multiline = true;
-            this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(322, 39);
-            this.txtPassword.TabIndex = 3;
-            this.txtPassword.UseSystemPasswordChar = true;
+            this.txtPass.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPass.Location = new System.Drawing.Point(317, 468);
+            this.txtPass.Multiline = true;
+            this.txtPass.Name = "txtPass";
+            this.txtPass.PasswordChar = '•';
+            this.txtPass.Size = new System.Drawing.Size(322, 39);
+            this.txtPass.TabIndex = 3;
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel1.BackgroundImage")));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.btnShow);
             this.panel1.Controls.Add(this.txtUsername);
-            this.panel1.Controls.Add(this.txtPassword);
+            this.panel1.Controls.Add(this.txtPass);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.btnBack);
@@ -112,6 +116,17 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "Username";
             // 
+            // btnBack
+            // 
+            this.btnBack.Font = new System.Drawing.Font("Segoe UI Black", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBack.Location = new System.Drawing.Point(28, 23);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(110, 40);
+            this.btnBack.TabIndex = 0;
+            this.btnBack.Text = "BACK";
+            this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click_1);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -134,15 +149,18 @@
             this.pictureBox1.TabIndex = 7;
             this.pictureBox1.TabStop = false;
             // 
-            // btnBack
+            // btnShow
             // 
-            this.btnBack.Location = new System.Drawing.Point(28, 23);
-            this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(110, 40);
-            this.btnBack.TabIndex = 0;
-            this.btnBack.Text = "BACK";
-            this.btnBack.UseVisualStyleBackColor = true;
-            this.btnBack.Click += new System.EventHandler(this.btnBack_Click_1);
+            this.btnShow.BackColor = System.Drawing.Color.Transparent;
+            this.btnShow.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnShow.FlatAppearance.BorderSize = 0;
+            this.btnShow.Image = ((System.Drawing.Image)(resources.GetObject("btnShow.Image")));
+            this.btnShow.Location = new System.Drawing.Point(587, 465);
+            this.btnShow.Name = "btnShow";
+            this.btnShow.Size = new System.Drawing.Size(55, 46);
+            this.btnShow.TabIndex = 8;
+            this.btnShow.UseVisualStyleBackColor = false;
+            this.btnShow.Click += new System.EventHandler(this.btnShow_Click);
             // 
             // Signup
             // 
@@ -153,6 +171,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Signup";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Load += new System.EventHandler(this.Signup_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -163,12 +182,13 @@
         #endregion
         private System.Windows.Forms.Button btnSignup;
         private System.Windows.Forms.TextBox txtUsername;
-        private System.Windows.Forms.TextBox txtPassword;
+        private System.Windows.Forms.TextBox txtPass;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnBack;
+        private System.Windows.Forms.Button btnShow;
     }
 }
