@@ -253,7 +253,7 @@
             this.label14.AutoSize = true;
             this.label14.BackColor = System.Drawing.Color.Transparent;
             this.label14.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(647, 634);
+            this.label14.Location = new System.Drawing.Point(552, 634);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(152, 25);
             this.label14.TabIndex = 62;
@@ -283,18 +283,18 @@
             // 
             // dtDischarged
             // 
-            this.dtDischarged.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtDischarged.Location = new System.Drawing.Point(651, 668);
+            this.dtDischarged.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtDischarged.Location = new System.Drawing.Point(557, 668);
             this.dtDischarged.Name = "dtDischarged";
-            this.dtDischarged.Size = new System.Drawing.Size(284, 39);
+            this.dtDischarged.Size = new System.Drawing.Size(378, 34);
             this.dtDischarged.TabIndex = 47;
             // 
             // dtAdmit
             // 
-            this.dtAdmit.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtAdmit.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtAdmit.Location = new System.Drawing.Point(100, 668);
             this.dtAdmit.Name = "dtAdmit";
-            this.dtAdmit.Size = new System.Drawing.Size(284, 39);
+            this.dtAdmit.Size = new System.Drawing.Size(380, 34);
             this.dtAdmit.TabIndex = 46;
             // 
             // cbDoctor

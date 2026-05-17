@@ -7,25 +7,29 @@ using System.Windows.Forms;
 
 namespace MedicalSystemDesktop
 {
-    public partial class loginForm : Form
+    public partial class Signup : Form
     {
-        public loginForm()
+        public Signup()
         {
             InitializeComponent();
         }
 
-        private async Task LoginUser()
+        private async Task SignupUser()
         {
             try
             {
                 if (txtUsername.Text.Trim() == "" ||
-                    txtPassword.Text.Trim() == "")
+                   txtPassword.Text.Trim() == "")
                 {
-                    MessageBox.Show("⚠ Please fill all fields");
+                    MessageBox.Show(
+                        "⚠ Please fill all fields"
+                    );
+
                     return;
                 }
 
-                using (HttpClient client = new HttpClient())
+                using (HttpClient client =
+                    new HttpClient())
                 {
                     var data = new
                     {
@@ -44,10 +48,13 @@ namespace MedicalSystemDesktop
                         );
 
                     string url =
-                        "http://localhost/medical_system/api/login.php";
+                        "http://localhost/medical_system/api/signup.php";
 
                     var response =
-                        await client.PostAsync(url, content);
+                        await client.PostAsync(
+                            url,
+                            content
+                        );
 
                     string result =
                         await response.Content.ReadAsStringAsync();
@@ -55,47 +62,43 @@ namespace MedicalSystemDesktop
                     dynamic res =
                         JsonConvert.DeserializeObject(result);
 
-                    // 🔥 DEBUG
-                    // MessageBox.Show(result);
-
                     if (res.status == "success")
                     {
-                        MessageBox.Show("✅ Login successful");
+                        MessageBox.Show(
+                            "✅ Account created successfully"
+                        );
 
-                        Form1 dashboard = new Form1();
-
-                        dashboard.Show();
-
-                        this.Hide();
+                        txtUsername.Clear();
+                        txtPassword.Clear();
                     }
                     else
                     {
-                        MessageBox.Show("❌ " + res.message);
+                        MessageBox.Show(
+                            "❌ " + res.message
+                        );
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("❌ Error: " + ex.Message);
+                MessageBox.Show(
+                    "❌ Error: " + ex.Message
+                );
             }
         }
 
-        // 🔥 LOGIN BUTTON
-        private async void btnLogin_Click(object sender, EventArgs e)
+        private async void btnSignup_Click(
+            object sender,
+            EventArgs e)
         {
-            await LoginUser();
+            await SignupUser();
         }
 
-        private void btnShow_Click(object sender, EventArgs e)
+        private void btnBack_Click_1(object sender, EventArgs e)
         {
-            txtPassword.UseSystemPasswordChar = !txtPassword.UseSystemPasswordChar;
-        }
+            loginForm login = new loginForm();
 
-        private void btnSignup_Click(object sender, EventArgs e)
-        {
-            Signup form = new Signup();
-
-            form.Show();
+            login.Show();
 
             this.Hide();
         }
